@@ -1,10 +1,13 @@
 package entidade;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Postagens {
+	
+	private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	
 	private Date momento;
 	private String titulo;
@@ -65,5 +68,19 @@ public class Postagens {
 	
 	public void removeComentario(Comentario comentario) {
 		comentarios.remove(comentario);
+	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(titulo+"\n");
+		sb.append(curtidas);
+		sb.append("LIKES - ");
+		sb.append(sdf.format(momento) + "\n");
+		sb.append(conteudo + "\n");
+		sb.append("COMENTARIO \n");
+		for (Comentario c : comentarios) {
+			sb.append(c.getTexto() + "\n");
+		}
+		return sb.toString();
 	}
 }
